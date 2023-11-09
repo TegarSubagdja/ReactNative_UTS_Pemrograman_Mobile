@@ -2,22 +2,22 @@ import React from "react";
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Colors from "../constant/Colors";
 
-const Login = () => {
+const Login = ({ navigation }) => {
     return (
-        <View style={style.container}>
+        <View style={styles.container}>
             <View style={styles.header}>
                 <Image
                     source={require("../assets/img/logo.png")}
                     style={styles.logo}
                 />
             </View>
-            <View style={styles.container}>
-
+            <View>
                 <View style={styles.content}>
                     <Text style={styles.title}>Sign Up</Text>
                     <TextInput
                         style={styles.input}
                         placeholder="Buat Username"
+                        secureTextEntry={true}
                     />
                     <TextInput
                         style={styles.input}
@@ -29,7 +29,7 @@ const Login = () => {
                         placeholder="Masukan Email"
                         secureTextEntry={true}
                     />
-                    <TouchableOpacity style={styles.loginButton}>
+                    <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Login')}>
                         <Text style={styles.loginButtonText}>Sign Up</Text>
                     </TouchableOpacity>
                 </View>

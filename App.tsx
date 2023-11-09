@@ -5,28 +5,79 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./pages/Home";
 import Bmi from "./pages/Bmi";
 import Calculator from "./pages/Calculator";
+import { Image } from "react-native";
+import Colors from "./constant/Colors";
+import Index from "./pages/Index";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
+import Pair from "./pages/Pair";
+import Welcome from "./pages/Welcome";
+import Chart from "./pages/Chart";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const MainStack = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="HomeMain" component={Home} options={{ headerShown: false }}/>
-      <Stack.Screen name="Bmi" component={Bmi} options={{ headerShown: false }}/>
-      <Stack.Screen name="Calculator" component={Calculator} options={{ headerShown: false }}/>
-    </Stack.Navigator>
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconSource;
+
+          if (route.name === "Home") {
+            iconSource = focused
+              ? require("./assets/img/react.png")
+              : require("./assets/img/react.png");
+          } else if (route.name === "Profile") {
+            iconSource = focused
+              ? require("./assets/img/react.png")
+              : require("./assets/img/react.png");
+          } else if (route.name === "Pair") {
+            iconSource = focused
+              ? require("./assets/img/react.png")
+              : require("./assets/img/react.png");
+          } else if (route.name === "Chart") {
+            iconSource = focused
+              ? require("./assets/img/react.png")
+              : require("./assets/img/react.png");
+          }
+
+          return <Image source={iconSource} style={{ width: size, height: size }} />;
+        },
+        tabBarStyle: {
+          backgroundColor: Colors.graySecondary,
+          borderTopWidth: 0,
+          height: 70,
+          paddingBottom: 10,
+        },
+        activeTintColor: 'white',
+        inactiveTintColor: 'gray',
+      })}
+    >
+      <Tab.Screen name="Home" component={Home} options={{ headerShown: false, tabBarHideOnKeyboard: true }} />
+      <Tab.Screen name="Pair" component={Pair} options={{ headerShown: false, tabBarHideOnKeyboard: true }} />
+      <Tab.Screen name="Chart" component={Chart} options={{ headerShown: false, tabBarHideOnKeyboard: true }} />
+      <Tab.Screen name="Profile" component={Profile} options={{ headerShown: false, tabBarHideOnKeyboard: true }} />
+    </Tab.Navigator>
   );
 };
+
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={MainStack} options={{ headerShown: false }}/>
-        <Tab.Screen name="Bmi" component={Bmi} options={{ headerShown: false }}/>
-        <Tab.Screen name="Calculator" component={Calculator} options={{ headerShown: false }}/>
-      </Tab.Navigator>
+      <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={MainStack} options={{ headerShown: false }} />
+        <Stack.Screen name="MainStack" component={MainStack} options={{ headerShown: false }} />
+        <Stack.Screen name="Index" component={Index} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+        <Stack.Screen name="Pair" component={Pair} options={{ headerShown: false }} />
+        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+        <Stack.Screen name="Chart" component={Chart} options={{ headerShown: false }} />
+        <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

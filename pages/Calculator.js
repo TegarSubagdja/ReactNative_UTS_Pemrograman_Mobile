@@ -24,6 +24,9 @@ const Calculator = () => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.heading}>
+                <Text style={styles.h1}>Calculator</Text>
+            </View>
             <View style={styles.inputContainer}>
                 <Text style={styles.inputText}>{input}</Text>
                 <Text style={styles.resultText}>{result}</Text>
@@ -151,7 +154,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 16,
-        justifyContent: "flex-end"
+        justifyContent: "flex-end",
+        backgroundColor: Colors.dark,
     },
     inputContainer: {
         backgroundColor: Colors.white,
@@ -190,7 +194,16 @@ const styles = StyleSheet.create({
     },
     buttonClear: {
         color: Colors.danger
-    }
+    },
+    h1: {
+        color: Colors.white,
+        fontSize: 30
+    },
+    heading: {
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 50,
+    },
 });
 
 export default Calculator;

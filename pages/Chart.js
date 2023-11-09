@@ -18,64 +18,66 @@ const Chart = () => {
     };
 
     return (
-        <View onLayout={({ nativeEvent }) => setChartParentWidth(nativeEvent.layout.width)}>
-            <Text style={styles.title}>Bezier Line Chart</Text>
+        <View style={styles.container}>
+            <View onLayout={({ nativeEvent }) => setChartParentWidth(nativeEvent.layout.width)}>
+                <Text style={styles.title}>Bezier Line Chart</Text>
 
-            <LineChart
-                data={{
-                    labels: ["January", "February", "March", "April", "May", "June"],
-                    datasets: [
-                        {
-                            data: data // Menggunakan data yang diperbarui
+                <LineChart
+                    data={{
+                        labels: ["January", "February", "March", "April", "May", "June"],
+                        datasets: [
+                            {
+                                data: data // Menggunakan data yang diperbarui
+                            }
+                        ]
+                    }}
+                    width={chartParentWidth}
+                    height={250}
+                    // yAxisLabel="$"
+                    // yAxisSuffix="k"
+                    yAxisInterval={1}
+                    chartConfig={{
+                        backgroundColor: Colors.primary,
+                        backgroundGradientFrom: Colors.primary,
+                        backgroundGradientTo: Colors.primary,
+                        decimalPlaces: 2,
+                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        style: {
+                            borderRadius: 16
+                        },
+                        propsForDots: {
+                            r: "4",
+                            strokeWidth: "2",
+                            stroke: Colors.primary
                         }
-                    ]
-                }}
-                width={chartParentWidth}
-                height={250}
-                // yAxisLabel="$"
-                // yAxisSuffix="k"
-                yAxisInterval={1}
-                chartConfig={{
-                    backgroundColor: Colors.primary,
-                    backgroundGradientFrom: Colors.primary,
-                    backgroundGradientTo: Colors.primary,
-                    decimalPlaces: 2,
-                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                    style: {
+                    }}
+                    bezier
+                    style={{
+                        marginVertical: 8,
                         borderRadius: 16
-                    },
-                    propsForDots: {
-                        r: "4",
-                        strokeWidth: "2",
-                        stroke: Colors.primary
-                    }
-                }}
-                bezier
-                style={{
-                    marginVertical: 8,
-                    borderRadius: 16
-                }}
-            />
-
-            <View style={styles.inputContainer}>
-                {/* Input */}
-                <TextInput
-                    style={styles.input}
-                    placeholder="Value"
-                    value={input}
-                    onChangeText={(text) => setInput(text)}
-                    keyboardType="numeric"
+                    }}
                 />
 
-                {/* Button untuk memperbarui grafik */}
-                <TouchableOpacity style={styles.updateButton} onPress={updateChart}>
-                    <Text style={styles.updateButtonText}>Update Chart</Text>
-                </TouchableOpacity>
-            </View>
+                <View style={styles.inputContainer}>
+                    {/* Input */}
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Value"
+                        value={input}
+                        onChangeText={(text) => setInput(text)}
+                        keyboardType="numeric"
+                    />
 
-            {/* Tambahkan kombinasi teks dengan nilai yang ada dalam state data */}
-            <Text style={styles.chartValues}>Chart Values: {data.join(', ')}</Text>
+                    {/* Button untuk memperbarui grafik */}
+                    <TouchableOpacity style={styles.updateButton} onPress={updateChart}>
+                        <Text style={styles.updateButtonText}>Update Chart</Text>
+                    </TouchableOpacity>
+                </View>
+
+                {/* Tambahkan kombinasi teks dengan nilai yang ada dalam state data */}
+                <Text style={styles.chartValues}>Chart Values: {data.join(', ')}</Text>
+            </View>
         </View>
     );
 };

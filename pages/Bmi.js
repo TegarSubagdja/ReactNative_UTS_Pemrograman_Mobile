@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Image, TextInput } from "react-native";
+import { View, StyleSheet, Text, Image, TextInput, TouchableOpacity } from "react-native";
 import Colors from "../constant/Colors";
-import Dropdown from "../components/Dropdown";
 
 const Bmi = () => {
+    const [beratBadan, setBeratBadan] = useState("");
+    const [tinggiBadan, setTinggiBadan] = useState("");
+    const [selectedGender, setSelectedGender] = useState("");
+
+    const calculateBMI = () => {
+        // Logika perhitungan BMI
+        const bmi = (parseFloat(beratBadan) / ((parseFloat(tinggiBadan) / 100) ** 2)).toFixed(2);
+        return bmi;
+    };
+
+    const handleGenderPress = (gender) => {
+        setSelectedGender(gender);
+    };
+
     return (
         <View style={styles.container}>
             {/* Heading */}
@@ -12,14 +25,20 @@ const Bmi = () => {
             </View>
             {/* Male and Female */}
             <View style={styles.gender}>
-                <View style={styles.male}>
-                    <Image source={require("../assets/img/Female.png")} />
-                    <Text style={styles.h2}>Female</Text>
-                </View>
-                <View style={styles.female}>
+                <TouchableOpacity
+                    style={[styles.male, selectedGender === "male" && { backgroundColor: Colors.primary }]}
+                    onPress={() => handleGenderPress("male")}
+                >
                     <Image source={require("../assets/img/Male.png")} />
-                    <Text style={styles.h2}>Female</Text>
-                </View>
+                    <Text style={[styles.h2, selectedGender === "male" && { color: Colors.white }]}>Male</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[styles.female, selectedGender === "female" && { backgroundColor: Colors.primary }]}
+                    onPress={() => handleGenderPress("female")}
+                >
+                    <Image source={require("../assets/img/Female.png")} />
+                    <Text style={[styles.h2, selectedGender === "female" && { color: Colors.white }]}>Female</Text>
+                </TouchableOpacity>
             </View>
             {/* Input Data */}
             <View style={styles.areaField}>
@@ -32,6 +51,8 @@ const Bmi = () => {
                         style={styles.textInput}
                         placeholder="Masukkan berat badan"
                         placeholderTextColor={Colors.grayLight}
+                        keyboardType="numeric"
+                        onChangeText={(text) => setBeratBadan(text)}
                     />
                 </View>
                 <View style={styles.field}>
@@ -43,6 +64,8 @@ const Bmi = () => {
                         style={styles.textInput}
                         placeholder="Masukkan tinggi badan"
                         placeholderTextColor={Colors.grayLight}
+                        keyboardType="numeric"
+                        onChangeText={(text) => setTinggiBadan(text)}
                     />
                 </View>
             </View>
@@ -51,25 +74,27 @@ const Bmi = () => {
                 <Text>Hasil</Text>
                 <View style={styles.output}>
                     <Text style={styles.h3}>Berat Badan</Text>
-                    <Text style={styles.h3}>70</Text>
+                    <Text style={styles.h3}>{beratBadan}</Text>
                 </View>
                 <View style={styles.output}>
                     <Text style={styles.h3}>Tinggi Badan</Text>
-                    <Text style={styles.h3}>180</Text>
+                    <Text style={styles.h3}>{tinggiBadan}</Text>
                 </View>
                 <View style={[styles.output, styles.bmi]}>
                     <Text style={styles.h2}>Body Mass Index</Text>
-                    <Text style={styles.h2}>180</Text>
+                    <Text style={styles.h2}>{calculateBMI()}</Text>
                 </View>
             </View>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: "column"
+        flexDirection: "column",
+        padding: 20,
+        backgroundColor: Colors.dark
     },
     h1: {
         color: Colors.white,
@@ -120,7 +145,6 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     field: {
-        width: "100%",
         flexDirection: "row",
         alignItems: "center",
         gap: 10,
@@ -146,7 +170,26 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.graySecondary,
         borderRadius: 8,
         padding: 12,
+        color: Colors.grayLight,
         height: "100%",
+    },
+    male: {
+        flex: 1,
+        width: "100%",
+        backgroundColor: Colors.graySecondary,
+        borderRadius: 10,
+        paddingVertical: 10,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    female: {
+        flex: 1,
+        width: "100%",
+        backgroundColor: Colors.graySecondary,
+        borderRadius: 10,
+        paddingVertical: 10,
+        justifyContent: "center",
+        alignItems: "center"
     },
 });
 

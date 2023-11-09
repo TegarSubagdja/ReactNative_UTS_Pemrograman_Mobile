@@ -38,7 +38,7 @@ const Welcome = ({ navigation }) => {
                 <Text style={styles.desc}>
                     Aplikasi ini dibuat untuk memenuhi nilai UTS Pemrograman Mobile
                 </Text>
-                <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('SignUp')}>
                     <Text style={styles.loginButtonText}>Next</Text>
                 </TouchableOpacity>
             </View>

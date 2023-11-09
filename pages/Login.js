@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Colors from "../constant/Colors";
 
-const Login = () => {
+const Login = ({ navigation }) => {
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: Colors.dark, padding: 20 }}>
             <View style={styles.header}>
                 <Image
                     source={require("../assets/img/logo.png")}
@@ -24,7 +24,7 @@ const Login = () => {
                         placeholder="Password"
                         secureTextEntry={true}
                     />
-                    <TouchableOpacity style={styles.loginButton}>
+                    <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate('Home')}>
                         <Text style={styles.loginButtonText}>Login</Text>
                     </TouchableOpacity>
                 </View>
