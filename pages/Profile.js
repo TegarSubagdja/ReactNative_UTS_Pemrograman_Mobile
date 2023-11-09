@@ -22,7 +22,7 @@ const Profile = () => {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Image
-                    source={require('../assets/img/react.png')}
+                    source={require('../assets/img/Profile.png')}
                     style={styles.profileImage}
                 />
                 <Text style={styles.username}>{editedName}</Text>

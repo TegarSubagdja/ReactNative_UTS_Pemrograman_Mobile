@@ -7,7 +7,7 @@ import Bmi from "./pages/Bmi";
 import Calculator from "./pages/Calculator";
 import { Image } from "react-native";
 import Colors from "./constant/Colors";
-import Index from "./pages/Index";
+import IndexNilai from "./pages/IndexNilai";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
@@ -27,20 +27,20 @@ const MainStack = () => {
 
           if (route.name === "Home") {
             iconSource = focused
-              ? require("./assets/img/react.png")
-              : require("./assets/img/react.png");
+              ? require("./assets/icon/Home_active.png")
+              : require("./assets/icon/Home.png");
           } else if (route.name === "Profile") {
             iconSource = focused
-              ? require("./assets/img/react.png")
-              : require("./assets/img/react.png");
+              ? require("./assets/icon/Profile_active.png")
+              : require("./assets/icon/Profile.png");
           } else if (route.name === "Pair") {
             iconSource = focused
-              ? require("./assets/img/react.png")
-              : require("./assets/img/react.png");
+              ? require("./assets/icon/Money_active.png")
+              : require("./assets/icon/Money.png");
           } else if (route.name === "Chart") {
             iconSource = focused
-              ? require("./assets/img/react.png")
-              : require("./assets/img/react.png");
+              ? require("./assets/icon/Chart_active.png")
+              : require("./assets/icon/Chart.png");
           }
 
           return <Image source={iconSource} style={{ width: size, height: size }} />;
@@ -71,12 +71,14 @@ const App = () => {
         <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={MainStack} options={{ headerShown: false }} />
         <Stack.Screen name="MainStack" component={MainStack} options={{ headerShown: false }} />
-        <Stack.Screen name="Index" component={Index} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="Pair" component={Pair} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
         <Stack.Screen name="Chart" component={Chart} options={{ headerShown: false }} />
+        <Stack.Screen name="Calculator" component={Calculator} options={{ headerShown: false }} />
         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+        <Stack.Screen name="Bmi" component={Bmi} options={{ headerShown: false }} />
+        <Stack.Screen name="IndexNilai" component={IndexNilai} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -6,7 +6,7 @@ import TextLink from "../components/TextLink";
 import Colors from "../constant/Colors";
 
 const Home = ({ navigation }) => {
-  const data = ["Home", "Calculator", "Bmi", "Chart", "Pair", "Profile"];
+  const data = ["Home", "Calculator", "Bmi", "Chart", "Pair", "Profile", "IndexNilai"];
   const [activeLink, setActiveLink] = useState("Home");
 
   const renderItem = ({ item }) => {

@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     heading: {
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 50,
+        marginBottom: 100,
     },
 });
 
